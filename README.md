@@ -7,7 +7,7 @@ mainly developers in quest of debugging.
 Requirements
 ------------
 
-[MySQL Proxy][mysql-proxy]
+[MySQL Proxy][mysql-proxy] >= 0.8 (May work with earlier version, untested)
 
 Running
 -------
