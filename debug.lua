@@ -81,6 +81,10 @@ function read_query_result (inj)
     io.write("    ")
     i = i +1
   end
+
+  if string.upper(string.sub(query,1,5)) == "BEGIN" then
+    transaction_counter = transaction_counter + 1
+  end
   
   print(
     string.format(
@@ -94,7 +98,4 @@ function read_query_result (inj)
       inj.response_time / 1e3
     )
   )
-  if string.upper(string.sub(query,1,5)) == "BEGIN" then
-    transaction_counter = transaction_counter + 1
-  end
 end
