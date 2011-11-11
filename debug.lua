@@ -28,12 +28,9 @@ function read_query( packet )
 end
 
 function read_query_result (inj)
-  local row_count = 0
   local res = assert(inj.resultset)
-  local num_cols = string.byte(res.raw, 1)
   local error_status = ""
   local color = ""
-  local query = ""
   if res.flags.no_good_index_used then
     error_status = error_status .. "No good index used!"
     color = "\27[33m"
@@ -42,9 +39,11 @@ function read_query_result (inj)
     error_status = error_status .. "No index used!"
     color = "\27[1;33m"
   end
+  local row_count = 0
   if res.affected_rows then
     row_count = res.affected_rows
   else
+    local num_cols = string.byte(res.raw, 1)
     if num_cols > 0 and num_cols < 255 then
       for row in inj.resultset.rows do
         row_count = row_count + 1
@@ -55,7 +54,7 @@ function read_query_result (inj)
     error_status = string.format("%q", res.raw:sub(10)) 
     color = "\27[1;31m"
   end
-  query = string.gsub(string.sub(inj.query, 2), "%s+", " ")
+  local query = string.gsub(string.sub(inj.query, 2), "%s+", " ")
   if string.upper(string.sub(query,1,6)) == "UPDATE" then
     color = "\27[35m"
   end
