@@ -37,4 +37,8 @@ Colors are also used to denote slow queries: time displayed in red instead of
 green. When a query returns no rows nor affect records, "<NONE>" is displayed
 using red in reverse video.
 
+### debug-blind.lua
+
+Same as debug.lua, but without shell colors.
+
 [mysql-proxy]: http://forge.mysql.com/wiki/MySQL_Proxy
