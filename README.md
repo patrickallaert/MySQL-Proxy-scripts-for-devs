@@ -21,11 +21,13 @@ Scripts
 
 Prints every SQL command received while cleaning obsolete spaces. Every
 command appears on one line with the following additional information:
+
 * an optional informative message about the query,
 * the number of rows returned or affected by the query,
 * the amout of time (in ms) it took to run the query.
 
 Additionally, colors are used to provide direct information on the queries:
+
 * yellow: when not using a good index (no\_good\_index\_used flag),
 * yellow + bold: when not using an index at all,
 * red: when an error occured,
