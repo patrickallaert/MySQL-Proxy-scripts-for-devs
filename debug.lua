@@ -51,9 +51,6 @@ function read_query_result (inj)
       end
     end
   end
-  if row_count == 0 then
-    color = "\27[1;36m"
-  end
   if res.query_status == proxy.MYSQLD_PACKET_ERR then
     error_status = string.format("%q", res.raw:sub(10)) 
     color = "\27[1;31m"
@@ -85,11 +82,11 @@ function read_query_result (inj)
   
   print(
     string.format(
-      "%s%s\t%s\t\27[0m%d\t%s%fms\27[0m", 
+      "%s%s\t%s\t\27[0m%s\27[0m\t%s%fms\27[0m", 
       color,
       query,
       error_status,
-      row_count,
+      row_count == 0 and "\27[7;31m<NONE>" or row_count,
       inj.response_time > 1e5 and "\27[1;31m" or "\27[32m",
       inj.response_time / 1e3
     )
