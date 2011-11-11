@@ -57,13 +57,13 @@ function read_query_result (inj)
   end
   query = string.gsub(string.sub(inj.query, 2), "%s+", " ")
   if string.upper(string.sub(query,1,6)) == "UPDATE" then
-    color = "\27[45m"
+    color = "\27[35m"
   end
   if string.upper(string.sub(query,1,6)) == "DELETE" then
-    color = "\27[45m"
+    color = "\27[35m"
   end
   if string.upper(string.sub(query,1,6)) == "INSERT" then
-    color = "\27[45m"
+    color = "\27[35m"
   end
 
   if string.upper(string.sub(query,1,6)) == "COMMIT" then
