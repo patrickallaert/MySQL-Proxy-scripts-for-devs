@@ -55,17 +55,10 @@ function read_query_result (inj)
     color = "\27[1;31m"
   end
   local query = string.gsub(string.sub(inj.query, 2), "%s+", " ")
-  if string.upper(string.sub(query,1,6)) == "UPDATE" then
+  local word = string.upper(string.sub(query,1,6))
+  if word == "UPDATE" or word == "DELETE" or word == "INSERT" then
     color = "\27[35m"
-  end
-  if string.upper(string.sub(query,1,6)) == "DELETE" then
-    color = "\27[35m"
-  end
-  if string.upper(string.sub(query,1,6)) == "INSERT" then
-    color = "\27[35m"
-  end
-
-  if string.upper(string.sub(query,1,6)) == "COMMIT" then
+  elseif word == "COMMIT" then
     transaction_counter = transaction_counter - 1
   end
 
