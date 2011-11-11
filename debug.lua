@@ -32,7 +32,6 @@ function read_query_result (inj)
   local res = assert(inj.resultset)
   local num_cols = string.byte(res.raw, 1)
   local error_status = ""
-  local dir = ""
   local color = ""
   local query = ""
   if res.flags.no_good_index_used then
@@ -44,10 +43,8 @@ function read_query_result (inj)
     color = "\27[1;33m"
   end
   if res.affected_rows then
-    dir = '>'
     row_count = res.affected_rows
   else
-    dir = '<'
     if num_cols > 0 and num_cols < 255 then
       for row in inj.resultset.rows do
         row_count = row_count + 1
@@ -88,11 +85,10 @@ function read_query_result (inj)
   
   print(
     string.format(
-      "%s%s\t%s\t\27[0m%s%d\t%s%fms\27[0m", 
+      "%s%s\t%s\t\27[0m%d\t%s%fms\27[0m", 
       color,
       query,
       error_status,
-      dir,
       row_count,
       inj.response_time > 1e5 and "\27[1;31m" or "\27[32m",
       inj.response_time / 1e3
