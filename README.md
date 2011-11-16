@@ -41,4 +41,16 @@ using red in reverse video.
 
 Same as debug.lua, but without shell colors.
 
+### slow.lua
+
+Simulates a server being slow because of huge traffic.
+
+The *sleep* command accepting a float as argument is required to make this
+script works out of the box.
+
+The slowdowns can be configured to make all requests longer by a factor or by
+a fixed amount of time (or both).
+
+By default, requests are made twice slower with an additional overhead of 0.1s.
+
 [mysql-proxy]: http://forge.mysql.com/wiki/MySQL_Proxy
