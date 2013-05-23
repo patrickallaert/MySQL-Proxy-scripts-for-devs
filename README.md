@@ -12,7 +12,9 @@ Requirements
 Running
 -------
 
-mysql-proxy --proxy-lua-script=/absolute/path/to/the/script.lua
+```bash
+$ mysql-proxy --proxy-lua-script=/absolute/path/to/the/script.lua
+```
 
 Scripts
 -------
