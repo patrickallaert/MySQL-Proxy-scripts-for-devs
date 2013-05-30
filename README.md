@@ -39,6 +39,8 @@ Colors are also used to denote slow queries: time displayed in red instead of
 green. When a query returns no rows nor affect records, "<NONE>" is displayed
 using red in reverse video.
 
+If you want to force "SQL_NO_CACHE" in your SELECT statements you can set the use_sql_no_cache variable to 1.
+
 ### debug-blind.lua
 
 Same as debug.lua, but without shell colors.
