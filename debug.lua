@@ -16,13 +16,27 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+use_sql_no_cache = 0
+
+function nocache(query)
+    local word = string.upper(string.sub(query,1,6))
+    if ( word == "SELECT" ) then
+        query = "SELECT SQL_NO_CACHE" .. query:sub(7)
+    end
+    return query
+end
+
 transaction_counter = 0
 
 function read_query( packet )
     if packet:byte() ~= proxy.COM_QUERY then
         return
     end
-    proxy.queries:append(1, string.char(proxy.COM_QUERY) .. packet:sub(2), {resultset_is_needed = true}) 
+    local query = packet:sub(2)
+    if ( use_sql_no_cache == 1 ) then
+        query = nocache(query)
+    end   
+    proxy.queries:append(1, string.char(proxy.COM_QUERY) .. query, {resultset_is_needed = true}) 
 
     return proxy.PROXY_SEND_QUERY
 end
