@@ -20,7 +20,7 @@ use_sql_no_cache = 0
 
 function nocache(query)
     local word = string.upper(string.sub(query,1,6))
-    if ( word == "SELECT" ) then
+    if ( word == "SELECT" and string.find(query, "SQL_NO_CACHE") == nil ) then
         query = "SELECT SQL_NO_CACHE" .. query:sub(7)
     end
     return query
