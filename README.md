@@ -45,6 +45,10 @@ If you want to force "SQL_NO_CACHE" in your SELECT statements you can set the us
 
 Same as debug.lua, but without shell colors.
 
+### log_all_queries.lua
+
+Same as debug.lua, but logs to a file (/var/log/mysql-proxy/querydebug.log) and with different fields.
+
 ### slow.lua
 
 Simulates a server being slow because of huge traffic.
